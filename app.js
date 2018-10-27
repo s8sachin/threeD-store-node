@@ -3,11 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var tdObjects = require('./routes/tdObjects');
 
 var app = express();
+
+// connect to db
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tdObjects', { useNewUrlParser: true })
+.then(() => console.log('connection succesful'))
+.catch((err) => console.error(err));
+mongoose.set('debug', true);
 
 app.use(logger('dev'));
 app.use(express.json());
