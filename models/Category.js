@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
 var Schema = mongoose.Schema;
+require('./TdObject');
 
 var CategorySchema = new Schema({
   name: {
