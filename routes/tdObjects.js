@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => {
   Category.find()
   .sort({ name: 1 })
   .populate('models')
+  .limit(2)
   .then((categories) => {
     res
     .status(200)
