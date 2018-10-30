@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var tdObjects = require('./routes/tdObjects');
+var categories = require('./routes/categories');
 
 var app = express();
 
@@ -22,8 +23,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
+
+// routes
 app.use('/', indexRouter);
 app.use('/tdObjects', tdObjects);
+app.use('/categories', categories);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
