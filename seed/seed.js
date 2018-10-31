@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const seedData = require('./models.json');
-const Category = require('./models/Category');
-const TdObject = require('./models/TdObject');
+const Category = require('../models/Category');
+const TdObject = require('../models/TdObject');
 
 const modelIds = (models) => (
   TdObject.create(models)
