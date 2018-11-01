@@ -283,8 +283,8 @@
         },
         {
           "name": "Headphones",
-          "mtl": "https://s3.ap-south-1.amazonaws.com/scapic-others/Models/Technology/Headphones/HeadPhones_01(1).obj",
-          "obj": "https://s3.ap-south-1.amazonaws.com/scapic-others/Models/Technology/Headphones/HeadPhones_01.mtl",
+          "obj": "https://s3.ap-south-1.amazonaws.com/scapic-others/Models/Technology/Headphones/HeadPhones_01(1).obj",
+          "mtl": "https://s3.ap-south-1.amazonaws.com/scapic-others/Models/Technology/Headphones/HeadPhones_01.mtl",
           "thumb": "https://s3.ap-south-1.amazonaws.com/scapic-others/Models/Technology/Headphones/thumbnail.png"
         },
         {
