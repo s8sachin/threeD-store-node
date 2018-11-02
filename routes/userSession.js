@@ -37,7 +37,7 @@ router.post('/logIn', (req, res, next) => {
         //Send back the token to the user
         res
         .status(200)
-        .json({ token, user: { email: user.email, name: user.name, _id: user._id }, ...info });
+        .json({ token, user: { email: user.email, name: user.name, _id: user._id, createdAt: user.createdAt }, ...info });
       });
     } catch (error) {
       // res.json({ token, user: { email: user.email, name: user.name } });
@@ -45,14 +45,5 @@ router.post('/logIn', (req, res, next) => {
     }
   })(req, res, next);
 });
-
-// router.get('/profile', (req, res, next) => {
-//   //We'll just send back the user details and the token
-//   res.json({
-//     message : 'You made it to the secure route',
-//     user : req.user,
-//     token : req.query.secret_token
-//   });
-// });
 
 module.exports = router;

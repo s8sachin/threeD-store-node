@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var tdObjects = require('./routes/tdObjects');
 var categories = require('./routes/categories');
 var userSession = require('./routes/userSession');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -33,7 +34,8 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/tdObjects', passport.authenticate('jwt', { session : false }), tdObjects);
 app.use('/categories', passport.authenticate('jwt', { session : false }), categories );
-app.use('/user', userSession);
+app.use('/user', passport.authenticate('jwt', { session : false }), user );
+app.use('/userSession', userSession);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
