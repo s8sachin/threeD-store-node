@@ -31,7 +31,7 @@ app.use(cors());
 
 // routes
 app.use('/', indexRouter);
-app.use('/tdObjects', tdObjects);
+app.use('/tdObjects', passport.authenticate('jwt', { session : false }), tdObjects);
 app.use('/categories', passport.authenticate('jwt', { session : false }), categories );
 app.use('/user', userSession);
 
