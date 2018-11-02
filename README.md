@@ -11,4 +11,5 @@ Libraries used here are:
 ##### JWT
 ##### MongodB - Mongoose ORM
 ##### BcryptJS
+##### Aws-sdk for updating s3
 
