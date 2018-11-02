@@ -4,10 +4,11 @@ var cors = require('cors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-
+var passport = require('passport');
 var indexRouter = require('./routes/index');
 var tdObjects = require('./routes/tdObjects');
 var categories = require('./routes/categories');
+var userSession = require('./routes/userSession');
 
 var app = express();
 
@@ -18,6 +19,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/tdObjects', { u
 .catch((err) => console.error(err));
 mongoose.set('debug', true);
 
+// app.use(passport.initialize());
+require('./config/passport');
+// const secureRoute = require('./routes/secure-route');
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,7 +32,8 @@ app.use(cors());
 // routes
 app.use('/', indexRouter);
 app.use('/tdObjects', tdObjects);
-app.use('/categories', categories);
+app.use('/categories', passport.authenticate('jwt', { session : false }), categories );
+app.use('/user', userSession);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,9 +46,10 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  // send the error
+  res
+  .status(err.status || 500)
+  .json({ message: 'error' });
 });
 
 module.exports = app;
